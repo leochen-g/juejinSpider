@@ -9,12 +9,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "axios": "^0.17.1",
     "express": "^4.16.2",
     "mongodb": "^2.2.33",
     "mongoose": "^4.13.2",
     "superagent": "^3.8.1",
-    "vue": "^2.5.3",
-    "vue-axios": "^2.0.2"
   }
 }

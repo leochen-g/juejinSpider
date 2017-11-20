@@ -163,7 +163,7 @@ $(document).ready(function () {
             goTop:function () {
                 this.click(function (e) {
                     e.preventDefault();
-                    $(document.body).animate({scrollTop: 0}, 2000);
+                    $(document.body).animate({scrollTop: 0}, 800);
                 });
             }
         }
