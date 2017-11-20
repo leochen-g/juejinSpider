@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>掘金历史最热收藏排行榜</title>
+    <link rel="stylesheet" href="./lib/bootstrap.min.css">
+</head>
+<body>
+<div id="main">
+    <div class="container">
+        <div class="row panel">
+            <div class="col-sm-12 page-header">
+                <h2 class="text-center">掘金{{sort}}历史最热收藏排行榜前一百名</h2>
+                <h4 class="text-center">收藏，评论，浏览量折线分析</h4>
+            </div>
+        </div>
+        <div class="row " id="menu" >
+            <div class="col-sm-7 col-sm-offset-3">
+                <ul class="nav nav-pills">
+                    <li role="presentation" class="active"><a href="#" v-on:click="getData('Android')">Android</a></li>
+                    <li role="presentation" class="active"><a href="#" v-on:click="getData('前端')">前端</a></li>
+                    <li role="presentation" class="active"><a href="#" v-on:click="getData('iOS')">iOS</a></li>
+                    <li role="presentation" class="active"><a href="#" v-on:click="getData('产品')">产品</a></li>
+                    <li role="presentation" class="active"><a href="#" v-on:click="getData('设计')">设计</a></li>
+                    <li role="presentation" class="active"><a href="#" v-on:click="getData('工具资源')">工具资源</a></li>
+                    <li role="presentation" class="active"><a href="#" v-on:click="getData('阅读')">阅读</a></li>
+                    <li role="presentation" class="active"><a href="#" v-on:click="getData('后端')">后端</a></li>
+                    <li role="presentation" class="active"><a href="#" v-on:click="getData('人工智能')">人工智能</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row spider" >
+            <div class="col-sm-12" >
+                <h4 class="text-center">数据不存在？？？！！别担心，我们开始采集，仅限前100条数据，快选择你要采集的数据</h4>
+            </div>
+            <div class="col-sm-7 col-sm-offset-3">
+                <ul class="nav nav-pills">
+                    <li role="presentation" class="active"><a href="#" v-on:click="spiderData('android')">Android</a></li>
+                    <li role="presentation" class="active"><a href="#" v-on:click="spiderData('前端')">前端</a></li>
+                    <li role="presentation" class="active"><a href="#" v-on:click="spiderData('iOS')">iOS</a></li>
+                    <li role="presentation" class="active"><a href="#" v-on:click="spiderData('产品')">产品</a></li>
+                    <li role="presentation" class="active"><a href="#" v-on:click="spiderData('设计')">设计</a></li>
+                    <li role="presentation" class="active"><a href="#" v-on:click="spiderData('工具资源')">工具资源</a></li>
+                    <li role="presentation" class="active"><a href="#" v-on:click="spiderData('阅读')">阅读</a></li>
+                    <li role="presentation" class="active"><a href="#" v-on:click="spiderData('后端')">后端</a></li>
+                    <li role="presentation" class="active"><a href="#" v-on:click="spiderData('人工智能')">人工智能</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div id="line" style="width: 1200px;height: 600px"></div>
+        </div>
+        <div style="height: 30px"></div>
+        <div class="row" id="masonry">
+            <div class="col-sm-6 col-md-4 box" v-for="item in articleList">
+                <div class="thumbnail">
+                    <img :src="item.screenshot" alt="">
+                    <div class="caption">
+                        <h3><a :href="item.originalUrl">{{item.title}}</a></h3>
+                        <p>{{item.summaryInfo}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div><a v-on:click="goTop()" href="#">回到顶部</a></div>
+    </div>
+</div>
+<script src="./lib/jquery.min.js"></script>
+<script src="./lib/bootstrap.min.js"></script>
+<script src="./lib/vue.js"></script>
+<script src="./lib/axios.min.js"></script>
+<script src="./lib/echarts.min.js"></script>
+<script src="./lib/masonry-docs.min.js"></script>
+<script src="./lib/imagesloaded.pkgd.min.js"></script>
+<script src="./js/main.js"></script>
+</body>
+</html>
