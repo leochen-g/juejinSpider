@@ -5,6 +5,7 @@
 
 数据库连接文件在mongidb/dbconfig中
 
+
     DB_URL = 'mongodb://localhost:27017/juejin';(替换成你自己的数据目录)
 
 # install
