@@ -1,8 +1,12 @@
-var superagent = require('superagent');
-var model = require('../mongodb/model.js');
+var superagent = require('superagent');//引入superagent 插件
+var model = require('../mongodb/model.js');// 引入mongodb 的model
 
-spider = function (sort,callback) {
-    var limit = 100;
+//爬取掘金热文主要函数，接收参数sort: 需要爬取的类别 callback：爬取完成后的回调
+spider = function (sort, callback) {
+
+    var limit = 100;//限制爬取的数据为100条，多余100条掘金就不给回应了
+
+    // 每个种类所对应的id值，在发送请求的时候需要
     var categroyList = [
         {
             "id": "5562b410e4b00c57d9b94a92",
@@ -41,26 +45,31 @@ spider = function (sort,callback) {
             "name": "人工智能"
         }
     ];
-    for (var i=0; i < categroyList.length; i++) {
+    for (var i = 0; i < categroyList.length; i++) {//根据type值取出对应的id值
         if (categroyList[i].name === sort) {
             var id = categroyList[i].id;
             break;
         }
     }
+    //请求链接
     var URL = 'https://timeline-merger-ms.juejin.im/v1/get_entry_by_hot?src=web&limit=' + limit + '&category=' + id;
     superagent
         .get(URL)
+        //请求结束后的操作
         .end(function (err, res) {
             if (err) {
                 return err;
             }
+            //解析请求后得到的body数据
             var result = res.body;
-            insertTomongoDB(result,callback);
+            insertTomongoDB(result, callback);
         });
 };
 //数据写入mongodb
-insertTomongoDB =function (val,callback) {
+insertTomongoDB = function (val, callback) {
+    //获取body中相关的主要数据，为entrylist数组
     var data = val.d.entrylist;
+    //创建一个插入数据库的数组
     var insertList = [];
     for (var i = 0; i < data.length; i++) {
         var insert = {
@@ -80,11 +89,10 @@ insertTomongoDB =function (val,callback) {
         };
         insertList.push(insert)
     }
-    model.insert(insertList,callback);
-
+    model.insert(insertList, callback); // 插入操作
 };
 
 module.exports = {
-    spiders:spider
+    spiders: spider
 };
 

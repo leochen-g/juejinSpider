@@ -1,9 +1,15 @@
-var Juejin = require('./juejinSchema.js');
+var Juejin = require('./juejinSchema.js'); //引入Schema 文件
 
 //数据插入
 function insert(conditions,callback) {
     conditions = conditions || {};
     Juejin.create(conditions,callback)
+}
+
+//数据查询
+function find(conditions,callback) {
+    conditions = conditions || {};
+    Juejin.find(conditions,callback);
 }
 
 //数据更新
@@ -20,13 +26,6 @@ function del(conditions) {
         if(err) console.log('Error' + err);
         else console.log('Res:' + res);
     })
-}
-
-
-//数据查询
-function find(conditions,callback) {
-    conditions = conditions || {};
-    Juejin.find(conditions,callback);
 }
 
 module.exports = {
